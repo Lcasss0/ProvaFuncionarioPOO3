@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.provapoo3.controller.FuncionarioController"
+            prefWidth="900" prefHeight="600">
+
+    <children>
+        <VBox spacing="8" layoutX="10" layoutY="10" prefWidth="880" prefHeight="580">
+            <children>
+                <Label text="Cadastro de Funcionários" styleClass="title" />
+                <GridPane hgap="8" vgap="8">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="14"/>
+                        <ColumnConstraints percentWidth="28"/>
+                        <ColumnConstraints percentWidth="14"/>
+                        <ColumnConstraints percentWidth="28"/>
+                        <ColumnConstraints percentWidth="16"/>
+                    </columnConstraints>
+
+                    <!-- Linha 1 -->
+                    <Label text="Matrícula:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfMatricula" promptText="000123" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="black-field"/>
+                    <Label text="Nome:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="tfNome" promptText="Nome completo" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="black-field"/>
+                    <Label text="CPF:" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                    <TextField fx:id="tfCPF" promptText="529.982.247-25 ou 52998224725" GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="black-field"/>
+
+                    <!-- Linha 2 -->
+                    <Label text="Nascimento:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="dpNascimento" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="Cargo:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <TextField fx:id="tfCargo" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="black-field"/>
+                    <Label text="Salário:" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                    <TextField fx:id="tfSalario" GridPane.rowIndex="1" GridPane.columnIndex="5" styleClass="black-field"/>
+
+                    <!-- Linha 3 - Endereço -->
+                    <Label text="Logradouro:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfLogradouro" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="black-field"/>
+                    <Label text="Número:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                    <TextField fx:id="tfNumero" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="black-field"/>
+                    <Label text="Complemento:" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+                    <TextField fx:id="tfComplemento" GridPane.rowIndex="2" GridPane.columnIndex="5" styleClass="black-field"/>
+
+                    <!-- Linha 4 -->
+                    <Label text="Bairro:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfBairro" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="black-field"/>
+                    <Label text="Cidade:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                    <TextField fx:id="tfCidade" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="black-field"/>
+                    <Label text="Estado:" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
+                    <TextField fx:id="tfEstado" GridPane.rowIndex="3" GridPane.columnIndex="5" styleClass="black-field"/>
+
+                    <!-- Linha 5 -->
+                    <Label text="CEP:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfCEP" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="black-field"/>
+                    <Label text="Data Contratação:" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+                    <DatePicker fx:id="dpContratacao" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+                    <HBox spacing="8" GridPane.rowIndex="4" GridPane.columnIndex="4" GridPane.columnSpan="2" alignment="CENTER_RIGHT">
+                        <children>
+                            <Button text="Adicionar" onAction="#adicionarFuncionario" styleClass="yellow-button"/>
+                            <Button text="Remover" onAction="#removerFuncionario" styleClass="yellow-button"/>
+                            <Button text="Consultar" onAction="#consultarPorMatricula" styleClass="yellow-button"/>
+                        </children>
+                    </HBox>
+                </GridPane>
+
+                <!-- Tabela -->
+                <TableView fx:id="tvFuncionarios" prefHeight="220">
+                    <columns>
+                        <TableColumn fx:id="colMatricula" text="Matrícula" prefWidth="120"/>
+                        <TableColumn fx:id="colNome" text="Nome" prefWidth="260"/>
+                        <TableColumn fx:id="colCPF" text="CPF" prefWidth="140"/>
+                        <TableColumn fx:id="colCargo" text="Cargo" prefWidth="140"/>
+                        <TableColumn fx:id="colCidade" text="Cidade" prefWidth="120"/>
+                        <TableColumn fx:id="colSalario" text="Salário" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <!-- Relatórios -->
+                <HBox spacing="8">
+                    <children>
+                        <TextField fx:id="tfFiltroCargo" promptText="Filtrar por cargo" styleClass="black-field" />
+                        <Button text="Relatório por cargo" onAction="#gerarRelatorioPorCargo" styleClass="yellow-button"/>
+                        <TextField fx:id="tfFiltroMinSalario" promptText="Min salário" styleClass="black-field" />
+                        <TextField fx:id="tfFiltroMaxSalario" promptText="Max salário" styleClass="black-field" />
+                        <Button text="Faixa salarial" onAction="#gerarRelatorioFaixaSalarial" styleClass="yellow-button"/>
+                        <Button text="Média por cargo" onAction="#calcularMediaPorCargo" styleClass="yellow-button"/>
+                        <Button text="Agrupar por cidade" onAction="#agruparPorCidade" styleClass="yellow-button"/>
+                    </children>
+                </HBox>
+
+                <TextArea fx:id="taRelatorio" prefRowCount="6" wrapText="true"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
